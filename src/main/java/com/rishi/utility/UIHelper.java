@@ -81,7 +81,7 @@ public class UIHelper {
 			driver = new InternetExplorerDriver();
 			break;
 		}
-		maximize_window();
+		//maximize_window();
 		return driver;
 	}
 
