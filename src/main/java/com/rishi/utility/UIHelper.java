@@ -30,12 +30,17 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.safari.SafariDriver;
+import org.openqa.selenium.safari.SafariOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -81,7 +86,51 @@ public class UIHelper {
 			driver = new InternetExplorerDriver();
 			break;
 		}
-		//maximize_window();
+		maximize_window();
+		return driver;
+	}
+
+	public static WebDriver createDriverInstanceWithDesiredCapablity(String BrowserType) {
+		switch (BrowserType.toUpperCase()) {
+			case "FIREFOX":
+				FirefoxOptions fireFoxOptions = new FirefoxOptions();
+				fireFoxOptions.addArguments("--test-type");
+				fireFoxOptions.addArguments("--disable-extensions");
+				fireFoxOptions.setAcceptInsecureCerts(true);
+				fireFoxOptions.addArguments("--remote-allow-origins=*");
+				fireFoxOptions.addArguments("-headless");
+				driver = new FirefoxDriver(fireFoxOptions);
+				break;
+			case "CHROME":
+				ChromeOptions chromeOptions = new ChromeOptions();
+				chromeOptions.addArguments("--test-type");
+				chromeOptions.addArguments("--disable-extensions");
+				chromeOptions.setAcceptInsecureCerts(true);
+				chromeOptions.addArguments("--remote-allow-origins=*");
+				chromeOptions.setCapability(chromeOptions.CAPABILITY, chromeOptions);
+				driver = new ChromeDriver(chromeOptions);
+				break;
+			case "EDGE":
+				EdgeOptions edgeOptions = new EdgeOptions();
+				edgeOptions.addArguments("--test-type");
+				edgeOptions.addArguments("--disable-extensions");
+				edgeOptions.setAcceptInsecureCerts(true);
+				edgeOptions.addArguments("--remote-allow-origins=*");
+				edgeOptions.setCapability(edgeOptions.CAPABILITY, edgeOptions);
+				driver = new EdgeDriver(edgeOptions);
+				break;
+			case "SAFARI":
+				SafariOptions safariOptions = new SafariOptions();
+				safariOptions.setAcceptInsecureCerts(true);
+				driver = new SafariDriver(safariOptions);
+				break;
+			case "IE":
+				InternetExplorerOptions ieOptions = new InternetExplorerOptions();
+				ieOptions.setAcceptInsecureCerts(true);
+				driver = new InternetExplorerDriver(ieOptions);
+				break;
+		}
+		maximize_window();
 		return driver;
 	}
 
