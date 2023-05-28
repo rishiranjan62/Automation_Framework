@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite"><test verbose="2" preserve-order="true" name="D:/Workspace/Automation_Framework"><classes><class name="com.rishi.test.SampleTest"><methods><include name="sampletest"/><include name="sampletest1"/></methods></class></classes></test></suite>
